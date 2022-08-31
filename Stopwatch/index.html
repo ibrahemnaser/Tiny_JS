@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stop Watch</title>
+    <!-- == Custom Style == -->
+    <link rel="stylesheet" href="dest/main.css" />
+    <!-- == Custom JS == -->
+    <script defer src="main.js"></script>
+  </head>
+  <body>
+    <main
+      class="flex items-center justify-center h-screen w-screen bg-indigo-600"
+    >
+      <section
+        class="h-1/2 w-1/2 border-2 shadow-lg bg-transparent text-center p-8 relative"
+      >
+        <h1 class="text-white font-bold text-5xl">Stop Watch</h1>
+        <div
+          class="text-white text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
+          <span id="sec">00</span>
+          :
+          <span id="msec">00</span>
+        </div>
+        <div
+          class="w-2/3 flex gap-4 justify-between absolute text-white bottom-4 left-1/2 -translate-x-1/2"
+        >
+          <button class="btn-indigo" data-action="start">Start</button>
+          <button class="btn-indigo" data-action="stop">Stop</button>
+          <button class="btn-indigo" data-action="reset">Reset</button>
+        </div>
+        <div
+          class="toast fixed bottom-4 -left-24 bg-green-700 text-white px-4 py-2 shadow-xl border-l-4 border-white transition-all duration-500 ease-[cubic-bezier(.31,1.59,.89,.87)]"
+        >
+          <p class="toast-text uppercase">hello</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
