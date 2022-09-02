@@ -4,7 +4,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stop Watch</title>
+    <title>Digital Watch</title>
+    <style>
+      .wall-clock::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        z-index: 10;
+      }
+      .wall-clock .arms-container {
+        transform: translateX(1px) rotate(180deg);
+      }
+      .wall-clock .arms {
+        position: absolute;
+        top: 50%;
+        transform: translateX(-2px);
+      }
+      .wall-clock .arm {
+        width: 5px;
+        height: 40px;
+        display: inline-block;
+        transform-origin: bottom;
+        transform: translateY(-1%);
+        border-radius: 50px;
+        position: absolute;
+      }
+      .wall-clock .arm.second {
+        width: 2px;
+        height: 50px;
+      }
+      .wall-clock .arm.minute {
+        width: 3px;
+        height: 45px;
+      }
+      .wall-clock .arm.hour {
+        transform: translateX(-2px);
+      }
+      .wall-clock span {
+        inset: 2px;
+        transform: rotate(calc(30deg * var(--i)));
+      }
+    </style>
     <!-- == Custom Style == -->
     <link rel="stylesheet" href="dest/main.css" />
     <!-- == Custom JS == -->
@@ -15,29 +57,50 @@
       class="flex items-center justify-center h-screen w-screen bg-indigo-600"
     >
       <section
-        class="h-1/2 w-1/2 border-2 shadow-lg bg-transparent text-center p-8 relative"
+        class="flex flex-col items-center gap-8 h-1/2 w-full md:w-3/5 border-2 shadow-lg bg-transparent text-center px-2 py-4 md:p-8 relative shadow-2xl"
       >
-        <h1 class="text-white font-bold text-5xl">Stop Watch</h1>
         <div
-          class="text-white text-2xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+          class="wall-clock flex items-center justify-center relative bg-white w-36 h-36 rounded-full before:bg-indigo-600 shadow-lg"
         >
-          <span id="sec">00</span>
+          <div class="arms-container flex items-center justify-center">
+            <div class="arms" id="sec">
+              <i class="arm second bg-black"></i>
+            </div>
+            <div class="arms" id="min">
+              <i class="arm minute bg-indigo-600"></i>
+            </div>
+
+            <div class="arms" id="hr">
+              <i class="arm hour bg-indigo-800"></i>
+            </div>
+          </div>
+          <span class="absolute" style="--i: 1"><strong>1</strong></span>
+          <span class="absolute" style="--i: 2"><strong>2</strong></span>
+          <span class="absolute" style="--i: 3"><strong>3</strong></span
+          ><span class="absolute" style="--i: 4"><strong>4</strong></span>
+          <span class="absolute" style="--i: 5"><strong>5</strong></span
+          ><span class="absolute" style="--i: 6"><strong>6</strong></span>
+          <span class="absolute" style="--i: 7"><strong>7</strong></span
+          ><span class="absolute" style="--i: 8"><strong>8</strong></span>
+          <span class="absolute" style="--i: 9"><strong>9</strong></span
+          ><span class="absolute" style="--i: 10"><strong>10</strong></span>
+          <span class="absolute" style="--i: 11"><strong>11</strong></span
+          ><span class="absolute" style="--i: 12"><strong>12</strong></span>
+        </div>
+        <div class="w-full text-white text-4xl">
+          <span id="hour">00</span>
           :
-          <span id="msec">00</span>
+          <span id="minute">00</span>
+          :
+          <span id="second">00</span>
+          <span id="session"></span>
         </div>
         <div
-          class="w-2/3 flex gap-4 justify-between absolute text-white bottom-4 left-1/2 -translate-x-1/2"
+          class="w-full text-white text-4xl absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <button class="btn-indigo" data-action="start">Start</button>
-          <button class="btn-indigo" data-action="stop">Stop</button>
-          <button class="btn-indigo" data-action="reset">Reset</button>
+          <h3 id="date"></h3>
         </div>
       </section>
     </main>
-    <div
-      class="toast fixed bottom-4 -left-24 bg-green-700 text-white px-4 py-2 shadow-xl border-l-4 border-white transition-all duration-500"
-    >
-      <p class="toast-text uppercase">hello</p>
-    </div>
   </body>
 </html>

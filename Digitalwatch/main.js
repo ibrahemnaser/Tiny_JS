@@ -1,77 +1,96 @@
-const btns = document.querySelectorAll("button");
-const toastTxt = document.querySelector(".toast-text");
-const sec = document.getElementById("sec");
-const mSec = document.getElementById("msec");
+const hourField = document.getElementById("hour");
+const minuteField = document.getElementById("minute");
+const secondField = document.getElementById("second");
+const sessionField = document.getElementById("session");
+const dateField = document.getElementById("date");
 
-let timerWatch;
-let timerToast;
-let seconds = 0;
-let millSeconds = 0;
+const secArm = document.getElementById("sec");
+const minArm = document.getElementById("min");
+const hrArm = document.getElementById("hr");
 
-btns.forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    let action = e.target.dataset.action.toLowerCase();
+const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+const months = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+];
 
-    // stop watch functionality
-    handleAction(action);
+// Call func
+displayTime();
+displayDate();
+wallClockFun();
 
-    // toast functionality
-    clearTimeout(timerToast);
-    handleToast(action);
-  });
-});
+function displayTime() {
+  const time = new Date();
+  // time variables
+  let h = time.getHours(); // 0 - 23
+  let m = time.getMinutes(); // 0 - 59
+  let s = time.getSeconds(); // 0 - 59
+  let session;
 
-// handle toast
-function handleToast(action) {
-  toastTxt.innerHTML = action;
-  toastTxt.parentElement.classList.remove("-left-24");
-  toastTxt.parentElement.classList.add("left-4");
-  timerToast = setTimeout(() => {
-    toastTxt.parentElement.classList.remove("left-4");
-    toastTxt.parentElement.classList.add("-left-24");
-  }, 1000);
+  // hours logic
+  h >= 12 ? (session = "PM") : (session = "AM");
+  h > 12 ? (h = h - 12) : (h = h);
+  h < 10 ? (h = "0" + h) : (h = h);
+  hourField.innerHTML = h;
+  sessionField.innerHTML = session;
+
+  // minutes logic
+  m < 10 ? (m = "0" + m) : (m = m);
+  minuteField.innerHTML = m;
+
+  // seconds logic
+  s < 10 ? (s = "0" + s) : (s = s);
+  secondField.innerHTML = s;
+
+  // repeat function
+  setTimeout(displayTime, 1000);
 }
 
-// Interval function
-function startTime() {
-  timerWatch = setInterval(() => {
-    millSeconds++;
-    if (millSeconds < 10) {
-      mSec.innerHTML = "0" + millSeconds;
-    }
-    if (millSeconds >= 10) {
-      mSec.innerHTML = millSeconds;
-    }
-    if (millSeconds >= 100) {
-      seconds++;
-      millSeconds = 0;
-      mSec.innerHTML = "00";
-    }
-    if (seconds < 10) {
-      sec.innerHTML = "0" + seconds;
-    }
-    if (seconds >= 10) {
-      sec.innerHTML = seconds;
-    }
-  }, 10);
-}
+function displayDate() {
+  const currDate = new Date();
 
-// Action handeling
-function handleAction(action) {
-  switch (action) {
-    case "start":
-      clearInterval(timerWatch);
-      startTime();
-      break;
-    case "stop":
-      clearInterval(timerWatch);
-      break;
-    case "reset":
-      clearInterval(timerWatch);
-      seconds = 0;
-      millSeconds = 0;
-      sec.innerHTML = "00";
-      mSec.innerHTML = "00";
-      break;
+  // date variables
+  let today = days[currDate.getDay()];
+  let dayOfMonth = currDate.getDate();
+  let month = months[currDate.getMonth()];
+  let year = currDate.getFullYear();
+
+  let ordinal = "th";
+
+  if ([1, 21, 31].includes(dayOfMonth)) {
+    ordinal = "st";
   }
+  if ([2, 22].includes(dayOfMonth)) {
+    ordinal = "nd";
+  }
+  if ([3, 23].includes(dayOfMonth)) {
+    ordinal = "rd";
+  }
+
+  dateField.innerHTML = `${today}, ${dayOfMonth}${ordinal} ${month} ${year}`;
+}
+
+function wallClockFun() {
+  const time = new Date();
+
+  // calculate rotation degree
+  let secRotate = time.getSeconds() * 6;
+  let minRotate = time.getMinutes() * 6 + time.getSeconds() * 0.1;
+  let hrRotate = time.getHours() * 30 + time.getMinutes() * 0.5;
+
+  secArm.style.transform = `rotate(${secRotate}deg)`;
+  minArm.style.transform = `rotate(${minRotate}deg)`;
+  hrArm.style.transform = `rotate(${hrRotate}deg)`;
+
+  setTimeout(wallClockFun, 1000);
 }
