@@ -5,3 +5,117 @@
   padding: 0;
   box-sizing: border-box;
 }
+:root {
+  --tenne-tawny: #d65108;
+  --tenne-tawny-dark: #b54507;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+::selection {
+  background-color: var(--tenne-tawny-dark);
+  color: white;
+}
+/*  */
+.container {
+  min-height: 100vh;
+  max-width: 1280px;
+  width: 100%;
+  padding: 0 15px;
+  margin: 40px auto;
+  text-align: center;
+}
+.btn {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+.title {
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+.text {
+  opacity: 0.7;
+}
+.meal-wrapper cite {
+  color: var(--tenne-tawny-dark);
+}
+.search-box {
+  margin-top: 20px;
+  display: flex;
+}
+.search-box .search-input {
+  flex: 1 1 100%;
+  padding: 10px;
+  color: var(--tenne-tawny);
+  outline-color: var(--tenne-tawny-dark);
+  border-color: var(--tenne-tawny);
+  border: 1px solid;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+.search-input::placeholder {
+  color: var(--tenne-tawny);
+  font-weight: 400;
+}
+.search-box .search-btn {
+  background-color: var(--tenne-tawny);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s;
+  border: 1px solid var(--tenne-tawny-dark);
+}
+.search-box .search-btn:hover {
+  background-color: var(--tenne-tawny-dark);
+}
+
+/*  */
+.meal-results {
+  margin-top: 50px;
+}
+@media (min-width: 600px) {
+  .meal {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+  }
+}
+.meal-item {
+  box-shadow: 0 4px 21px -12px rgba(0, 0, 0, 0.79);
+  overflow: hidden;
+  border-radius: 10px;
+  padding-bottom: 50px;
+  margin-bottom: 50px;
+}
+@media (min-width: 600px) {
+  .meal-item {
+    margin-bottom: 0;
+  }
+}
+.meal-item .img img {
+  width: 100%;
+}
+.meal-item .meal-name {
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 20px 0;
+}
+.meal-item .recipe-btn {
+  display: block;
+  text-decoration: none;
+  color: white;
+  background-color: var(--tenne-tawny);
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin: auto;
+  width: fit-content;
+  transition: all 0.3s linear;
+}
+.meal-item .recipe-btn:hover {
+  background-color: var(--tenne-tawny-dark);
+}
