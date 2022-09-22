@@ -29,6 +29,7 @@
             type="text"
             class="search-input"
             placeholder="Find your Meal"
+            id="search-field"
           />
           <button id="search-btn" type="submit" class="search-btn btn">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -37,46 +38,50 @@
       </div>
       <div class="meal-results">
         <h2 class="title">Your Meal Results:</h2>
-        <div class="meal">
-          <!-- meal item -->
-          <div class="meal-item">
-            <div class="img">
-              <img src="food.jpg" alt="meal" />
-            </div>
-            <div class="meal-info">
-              <h4 class="meal-name">Potato Chips</h4>
-              <a class="recipe-btn" href="#">Get Recipe</a>
-            </div>
+        <div class="meal" id="meal-container"></div>
+      </div>
+      <div class="modal hide">
+        <div class="overlay"></div>
+        <div class="meal-details">
+          <button class="btn-close btn">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+          <h3 class="meal-details-title">Meal Name</h3>
+          <span class="category">Category</span>
+          <div class="meal-instructions">
+            <h4>Instructions:</h4>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit.
+              Obcaecati, recusandae qui quibusdam dolores, cum neque asperiores
+              quod facilis magnam ex et deserunt inventore? Inventore eius
+              exercitationem sint, facilis perferendis eum? Porro sapiente
+              itaque quasi modi placeat, autem est fuga nobis pariatur at omnis
+              ipsa similique nemo animi
+            </p>
+            <br />
+            <br />
+            <p>
+              Fugit facilis qui veniam ea odit esse laudantium aut dicta
+              accusantium quas aliquam quibusdam ducimus ipsam voluptatum
+              accusamus omnis nihil aliquid pariatur consectetur, expedita
+              veritatis ipsa repellat laborum. Veritatis, voluptates? Suscipit
+              quidem commodi qui quis quas facilis sit fugiat similique saepe
+              molestias iure ut autem quod, magni, eos magnam delectus beatae
+              accusamus asperiores provident repellat sed! Obcaecati culpa ut
+              architecto. Voluptatum officiis quam, eum voluptatem mollitia
+              temporibus veniam facilis doloremque minus ut, magni fuga
+              assumenda ex, at necessitatibus atque quos aperiam ducimus quia
+              cupiditate. Veritatis laudantium neque dolore animi! Quam! Ipsam
+              nesciunt, quibusdam voluptate, velit a fuga sed eum blanditiis est
+              officiis quod nobis laborum eius et corporis hic omnis quidem
+              repellat error id consequuntur dicta. Voluptates nam optio ipsum
+            </p>
           </div>
-          <!-- meal item -->
-          <div class="meal-item">
-            <div class="img">
-              <img src="food.jpg" alt="meal" />
-            </div>
-            <div class="meal-info">
-              <h4 class="meal-name">Potato Chips</h4>
-              <a class="recipe-btn" href="#">Get Recipe</a>
-            </div>
+          <div class="meal-img">
+            <img src="food.jpg" alt="meal" />
           </div>
-          <!-- meal item -->
-          <div class="meal-item">
-            <div class="img">
-              <img src="food.jpg" alt="meal" />
-            </div>
-            <div class="meal-info">
-              <h4 class="meal-name">Potato Chips</h4>
-              <a class="recipe-btn" href="#">Get Recipe</a>
-            </div>
-          </div>
-          <!-- meal item -->
-          <div class="meal-item">
-            <div class="img">
-              <img src="food.jpg" alt="meal" />
-            </div>
-            <div class="meal-info">
-              <h4 class="meal-name">Potato Chips</h4>
-              <a class="recipe-btn" href="#">Get Recipe</a>
-            </div>
+          <div class="video">
+            <a href="#">Watch Video</a>
           </div>
         </div>
       </div>
