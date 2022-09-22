@@ -1,9 +1,14 @@
 // variables
 const searchBtn = document.getElementById("search-btn");
 const mealContainer = document.getElementById("meal-container");
+const recipeModal = document.querySelector(".modal");
+const recipeModalClose = document.querySelector(".modal .btn-close");
 
 // actions
 searchBtn.addEventListener("click", findMeal);
+recipeModalClose.addEventListener("click", () => {
+  recipeModal.classList.add("hide");
+});
 
 // functions
 function findMeal() {
@@ -28,10 +33,43 @@ function findMeal() {
                         </div>
                     `;
           });
+          mealContainer.classList.remove("not-found");
           mealContainer.innerHTML = html ? html : "loading...";
+          document.querySelectorAll(".meal-item .recipe-btn").forEach((ele) => {
+            ele.addEventListener("click", (e) => {
+              e.preventDefault();
+              const recipeId =
+                e.target.parentElement.parentElement.getAttribute("data-id");
+              getRecipeById(recipeId);
+            });
+          });
         } else {
-          mealContainer.innerHTML = "Sorry, not found";
+          mealContainer.classList.add("not-found");
+          mealContainer.innerHTML = `
+          <h3>Sorry, no meals found!</h3>
+          `;
         }
       });
   }
+}
+
+function getRecipeById(id) {
+  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
+    .then((res) => res.json())
+    .then(({ meals }) => {
+      document.querySelector(".meal-details .meal-details-title").innerHTML =
+        meals[0].strMeal;
+      document.querySelector(".meal-details .category").innerHTML =
+        meals[0].strCategory;
+      document.querySelector(".meal-details .meal-instructions p").innerHTML =
+        meals[0].strInstructions;
+      document.querySelector(
+        ".meal-details .meal-img"
+      ).innerHTML = `<img src=${meals[0].strMealThumb} alt=${meals[0].strMeal} />`;
+      document.querySelector(
+        ".meal-details .video"
+      ).innerHTML = `<a href=${meals[0].strYoutube} target='_blank'>Watch Video</a>`;
+
+      recipeModal.classList.remove("hide");
+    });
 }
